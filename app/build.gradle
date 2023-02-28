@@ -51,5 +51,7 @@ dependencies {
 
     //web view
    // implementation 'com.github.delight-im:Android-AdvancedWebView:v3.2.1'
+    // multiSelectSpinner
+    //implementation 'com.github.puskal-khadka:MultiSelectSpinner:1.0.1'
 
 }

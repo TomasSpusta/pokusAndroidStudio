@@ -8,28 +8,62 @@ import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.spinnertutorial.lists.ChildItem
 import com.example.spinnertutorial.lists.Lists
+import com.example.spinnertutorial.lists.ParentItem
+import com.example.spinnertutorial.lists.ParentRecyclerViewAdapter
 
-lateinit var reservationTime: String
 
 class MainActivity : AppCompatActivity() {
 
+   private lateinit var parentRecyclerView: RecyclerView
+   private lateinit var parentList : ArrayList<ParentItem>
+
+    //lateinit var reservationTime: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        parentRecyclerView = findViewById(R.id.parent_recycler_view)
+        parentRecyclerView.setHasFixedSize(true)
+        parentRecyclerView.layoutManager = LinearLayoutManager(this)
+        parentList = ArrayList()
+
+        prepareData ()
+
+        val adapterx = ParentRecyclerViewAdapter(parentList)
+        parentRecyclerView.adapter = adapterx
 
         // Web view will display web site of cf nano to see reservations
         // setupWebView ()
 
         // Set up spinner for equip, operations...
-        setupSpinner()
+        //setupSpinner()
 
         // Checking the selected time of reservation
-        checkTime()
+        //checkTime()
 
 
     }
 
+    private fun prepareData(){
+        val childItems1 = ArrayList<ChildItem> ()
+        childItems1.add (ChildItem("C"))
+        childItems1.add (ChildItem("D"))
+        childItems1.add (ChildItem("E"))
+        parentList.add(ParentItem("Game development", childItems1,false))
+
+        val childItems2 = ArrayList<ChildItem> ()
+        childItems2.add (ChildItem("A"))
+        childItems2.add (ChildItem("B"))
+        childItems2.add (ChildItem("F"))
+        parentList.add(ParentItem("Nevim development", childItems2,false))
+    }
+
+
+/*
     private fun checkTime() {
         //https://www.youtube.com/watch?v=0wZwLfmVTvU&ab_channel=CodeWithMazn
         var selectedTime: Int = 1
@@ -49,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
+/*
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() {
         val myWeb = findViewById<WebView>(R.id.web_view)
@@ -60,6 +94,8 @@ class MainActivity : AppCompatActivity() {
         myWeb.webViewClient = WebViewClient()
         myWeb.loadUrl("https://today.ceitec.cz/nano/")
     }
+
+ */
 
     private fun setupSpinner() {
         // create list of selected items which will be passed to the booking system API
@@ -234,4 +270,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+ */
 }
